@@ -6,24 +6,11 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 20:17:15 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/21 23:16:24 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/09/24 00:05:59 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	exit_error(char	*error_msg)
-{
-	printf("Error\n%s\n Closing Program\n", error_msg);
-	exit (0);
-}
-
-int	exit_game(t_game *game)
-{
-	printf("Thanks for play\n");
-	mlx_destroy_window(game->mlx, game->win);
-	exit (0);
-}
 
 void	verify_obj(t_game *game)
 {
@@ -36,32 +23,40 @@ void	verify_obj(t_game *game)
 
 int	count_line(char *argv)
 {
+	char	*line;
 	int	count;
 	int	fd;
 
 	count = 0;
 	fd = open(argv, O_RDONLY);
-	while (get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
 		count++;
+	}
 	close (fd);
 	return (count);
 }
 
 void	set_map(t_game *game)
 {
-	game->infoMap.mapLen = ft_strlen(game->map[0]);
-	game->infoMap.mapHei = count_line(game->argv);
-	game->infoMap.wall = "./imgs/sand.xpm";
-	game->infoMap.coll = "./imgs/coll.xpm";
-	game->infoMap.player = "./imgs/play1.xpm";
-	game->infoMap.exit = "./imgs/exit.xpm";
-	game->infoMap.grass = "./imgs/grass.xpm";
+	game->info_map.mapLen = ft_strlen(game->map[0]);
+	game->info_map.mapHei = count_line(game->argv);
+	game->info_map.wall = "./imgs/sand.xpm";
+	game->info_map.coll = "./imgs/coll.xpm";
+	game->info_map.player = "./imgs/play1.xpm";
+	game->info_map.exit = "./imgs/exit.xpm";
+	game->info_map.grass = "./imgs/grass.xpm";
 }
 
 void	set_game(t_game *game)
 {
 	game->steps = 1;
 	game->gems = 0;
+	game->player.collect = 0;
+	game->player.total = 0;
 }
 
 void	check_ext(char *file, int argc)

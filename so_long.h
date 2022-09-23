@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/21 22:56:43 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/09/24 00:08:44 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_map
 {
 	int		mapLen;
 	int		mapHei;
-	int		exitX;
-	int		exitY;
+	//int		exitX;
+	//int		exitY;
 	char	*coll;
 	char	*grass;
 	char	*player;
@@ -59,12 +59,13 @@ typedef struct s_game
 	int		endian;
 	char	*argv;
 	char	**map;
-	char	*addr;
+	//char	**tmap;
+	//char	*addr;
 	void	*mlx;
 	void	*win;
 	void	*imgPtr;
 	t_obj	player;
-	t_map	infoMap;
+	t_map	info_map;
 }	t_game;
 
 
@@ -72,7 +73,15 @@ typedef struct s_game
 
 int		keycode(int key, t_game *game);
 void	init_mlx(t_game *game);
-void	init_img(t_game *game);
+void	set_game(t_game *game);
+
+/* exit */
+
+int		exit_game(t_game *game);
+void	free_map(t_game *game);
+void	exit_error(char	*error_msg);
+void	new_check(t_game *game, char **map, int x, int y);
+char	**ft_dup_map(char **map);
 
 /* map */
 
@@ -82,21 +91,20 @@ void	check_elem(t_game *game);
 
 /* img */
 
-void	create_map(t_game *game);
+void	drawn_map(t_game *game);
+void	init_img(t_game *game);
 void	set_img(t_game *game, char c);
 
 
 /* utils */
 
-void	exit_error(char	*error_msg);
-int		exit_game(t_game *game);
 int		keycode(int key, t_game *game);
 int		count_line(char *argv);
 void	set_map(t_game *game);
 void	check_ext(char *file, int argc);
 void	set_hero(t_game *game, int x, int y, char elem);
 void	verify_obj(t_game *game);
-void	set_game(t_game *game);
+
 
 
 /* moves */

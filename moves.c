@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 14:48:25 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/21 19:29:30 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:57:32 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	move_a(t_game *game)
 		game->player.x--;
 		verify_obj(game);
 		game->map[game->player.y][game->player.x] = 'P';
-		printf("\n Steps : %d\n", game->steps++);
+		printf("Steps : %d\n", game->steps++);
 		return (1);
 	}
 	return (0);
@@ -40,7 +40,7 @@ int	move_d(t_game *game)
 		game->player.x++;
 		verify_obj(game);
 		game->map[game->player.y][game->player.x] = 'P';
-		printf("\n Steps : %d\n", game->steps++);
+		printf("Steps : %d\n", game->steps++);
 		return (1);
 	}
 	return (0);
@@ -57,7 +57,7 @@ int move_s(t_game *game)
 		game->player.y++;
 		verify_obj(game);
 		game->map[game->player.y][game->player.x] = 'P';
-		printf("\n Steps : %d\n", game->steps++);
+		printf("Steps : %d\n", game->steps++);
 		return (1);
 	}
 	return (0);
@@ -74,7 +74,7 @@ int move_w(t_game *game)
 		game->player.y--;
 		verify_obj(game);
 		game->map[game->player.y][game->player.x] = 'P';
-		printf("\n Steps : %d\n", game->steps++);
+		printf("Steps : %d\n", game->steps++);
 		return (1);
 	}
 	return (0);
