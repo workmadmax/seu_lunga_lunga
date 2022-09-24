@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 20:17:15 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/24 00:05:59 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/09/24 04:18:46 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,33 @@ void	verify_obj(t_game *game)
 		exit_game(game);
 }
 
-int	count_line(char *argv)
+int	count_line(char *argc)
 {
 	char	*line;
-	int	count;
-	int	fd;
+	int		cnt;
+	int		fd;
 
-	count = 0;
-	fd = open(argv, O_RDONLY);
+	cnt = 0;
+	fd = open(argc, O_RDONLY);
+	if (fd < 0)
+		exit_error("in FD");
 	line = get_next_line(fd);
+	cnt = 1;
 	while (line)
 	{
 		free(line);
 		line = get_next_line(fd);
-		count++;
+		++cnt;
 	}
-	close (fd);
-	return (count);
+	free(line);
+	close(fd);
+	return (cnt);
 }
 
 void	set_map(t_game *game)
 {
 	game->info_map.mapLen = ft_strlen(game->map[0]);
-	game->info_map.mapHei = count_line(game->argv);
+	game->info_map.mapHei = count_line(argv[1]);
 	game->info_map.wall = "./imgs/sand.xpm";
 	game->info_map.coll = "./imgs/coll.xpm";
 	game->info_map.player = "./imgs/play1.xpm";

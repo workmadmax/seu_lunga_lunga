@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:32:49 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/24 00:05:59 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/09/24 04:11:07 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ int	main(int argc, char *argv[])
 {
 	t_game	game;
 
-	game.argv = argv[1];
+	if (argc != 2)
+		exit_error("Error not pass map");
 
 	check_ext(argv[1], argc);
-	parse_map(&game);
+	parse_map(&game, &argv[1]);
 	
 	init_mlx(&game);
 	

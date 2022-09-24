@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 23:49:49 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/24 00:05:59 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/09/24 02:19:27 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	free_map(t_game *game)
 {
 	int	i;
 	
-	i = -1;
-	while (++i)
+	i = 0;
+	while (game->map[++i])
 		free(game->map[i]);
 	free(game->map);
 }

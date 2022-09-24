@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/24 00:08:44 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/09/24 04:18:52 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_game
 	int		gems;
 	int		steps;
 	int		endian;
-	char	*argv;
+	//char	*argv;
 	char	**map;
 	//char	**tmap;
 	//char	*addr;
@@ -85,7 +85,7 @@ char	**ft_dup_map(char **map);
 
 /* map */
 
-void	parse_map(t_game *game);
+void	parse_map(t_game *game, char *argv[]);
 void	check_wall(t_game *game);
 void	check_elem(t_game *game);
 
@@ -99,7 +99,7 @@ void	set_img(t_game *game, char c);
 /* utils */
 
 int		keycode(int key, t_game *game);
-int		count_line(char *argv);
+int		count_line(char *argc);
 void	set_map(t_game *game);
 void	check_ext(char *file, int argc);
 void	set_hero(t_game *game, int x, int y, char elem);

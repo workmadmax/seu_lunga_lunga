@@ -10,7 +10,7 @@
 # include "libft.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 999
 #endif
 
 /**
