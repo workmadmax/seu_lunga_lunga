@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 23:49:49 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/24 02:19:27 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:15:11 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,21 @@
 void	free_map(t_game *game)
 {
 	int	i;
-	
-	i = 0;
+
+	i = -1;
 	while (game->map[++i])
 		free(game->map[i]);
 	free(game->map);
+}
+
+void	free_strmap(char **map)
+{
+	int	idx;
+
+	idx = -1;
+	while (map[++idx])
+		free(map[idx]);
+	free(map);
 }
 
 void	exit_error(char	*error_msg)
@@ -34,48 +44,33 @@ int	exit_game(t_game *game)
 	free_map(game);
 	mlx_destroy_image(game->mlx, game->info_map.wall);
 	mlx_destroy_image(game->mlx, game->info_map.coll);
-	mlx_destroy_image(game->mlx, game->info_map.exit);
+	mlx_destroy_image(game->mlx, game->info_map.door);
 	mlx_destroy_image(game->mlx, game->info_map.grass);
-	mlx_destroy_image(game->mlx, game->info_map.player);
+	mlx_destroy_image(game->mlx, game->info_map.hero);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	exit (0);
 }
 
-char	**ft_dup_map(char **map)
+int	check_collects(char **map, char qavats)
 {
-	int		i;
-	char	**cpy;
+	int	i;
+	int	j;
+	int	cnt;
 
-	if (map == NULL || *map == NULL)
-		return (NULL);
-	i = 1;
-	while (map[++i])
-		;
-	cpy = (char **)malloc(i + sizeof(char *));
-	cpy[--i] = NULL;
-	while (i--)
-		cpy[i] = ft_strdup(map[i]);
-	return (cpy);
-}
-
-void	new_check(t_game *game, char **map, int x, int y)
-{
-	static int	doors;
-
-	doors = 0;
-	if (map[x][y] == '0' || map[x][y] == 'P' ||
-		map[x][y] == 'E' || map[x][y] == 'C')
+	i = 0;
+	cnt = 0;
+	while (map && map[i])
 	{
-		if (map[x][y] == 'C')
-			game->gems++;
-		if (map[x][y] == 'E')
-			doors++;
-		map[x][y] = 'M';
-		new_check(game, map, x, y + 1);
-		new_check(game, map, x, y - 1);
-		new_check(game, map, x + 1, y);
-		new_check(game, map, x - 1, y);
+		j = 0;
+		while (map[i][j] && map[i][j] != '\0' && map[i][j] != '\n')
+		{
+			if (map[i][j] == qavats)
+				cnt++;
+			j++;
+		}
+		i++;
 	}
+	return (cnt);
 }

@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:32:49 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/24 04:11:07 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:15:27 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ int	keycode(int key, t_game *game)
 
 void	init_mlx(t_game *game)
 {
-	int wid;
-	int hei;
+	int	wid;
+	int	hei;
 
-	wid = (game->info_map.mapLen) * 30;
-	hei = game->info_map.mapHei * 30;
+	wid = (game->info_map.map_len) * 30;
+	hei = (game->info_map.map_hei - 1) * 30;
 	game->mlx = mlx_init();
-
 	game->win = mlx_new_window(game->mlx, wid, hei, "so_lunga");
 	init_img(game);
-
 	drawn_map(game);
 	mlx_key_hook(game->win, keycode, game);
 	mlx_hook(game->win, 17, 0, exit_game, game);
@@ -48,15 +46,18 @@ void	init_mlx(t_game *game)
 
 int	main(int argc, char *argv[])
 {
+
 	t_game	game;
 
 	if (argc != 2)
 		exit_error("Error not pass map");
 
 	check_ext(argv[1], argc);
-	parse_map(&game, &argv[1]);
-	
+	parse_map(&game, argv[1]);
+
+	set_game(&game);
+	check_wall(&game);
+	check_elem(&game);
 	init_mlx(&game);
-	
 	return (0);
 }
