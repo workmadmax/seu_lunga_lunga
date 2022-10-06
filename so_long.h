@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/09/24 04:18:52 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/06 08:58:13 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 typedef struct s_map
 {
-	int		mapLen;
-	int		mapHei;
+	int		map_len;
+	int		map_hei;
 	//int		exitX;
 	//int		exitY;
 	char	*coll;
@@ -50,20 +50,21 @@ typedef struct s_loc
 
 typedef struct s_game
 {
-	int		imgWid;
-	int		imgHei;
+	int		img_wid;
+	int		img_hei;
 	int		bpp;
 	int		lenght;
 	int		gems;
 	int		steps;
 	int		endian;
-	//char	*argv;
+	int		saida;
+	int		val_ext;
 	char	**map;
-	//char	**tmap;
+	char	**tmap;
 	//char	*addr;
 	void	*mlx;
 	void	*win;
-	void	*imgPtr;
+	void	*img_p;
 	t_obj	player;
 	t_map	info_map;
 }	t_game;
