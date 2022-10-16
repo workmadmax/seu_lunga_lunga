@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/06 08:58:13 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:12:19 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,15 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-
 typedef struct s_map
 {
 	int		map_len;
 	int		map_hei;
-	//int		exitX;
-	//int		exitY;
 	char	*coll;
 	char	*grass;
-	char	*player;
+	char	*hero;
 	char	*wall;
-	char	*exit;
+	char	*door;
 }	t_map;
 
 typedef struct s_objs
@@ -56,19 +53,19 @@ typedef struct s_game
 	int		lenght;
 	int		gems;
 	int		steps;
-	int		endian;
 	int		saida;
+	int		endian;
+	int		val_gems;
 	int		val_ext;
+	char	*map_str;
 	char	**map;
-	char	**tmap;
-	//char	*addr;
+	char	**tmp_map;
 	void	*mlx;
 	void	*win;
-	void	*img_p;
-	t_obj	player;
+	void	*img_ptr;
+	t_obj	hero;
 	t_map	info_map;
 }	t_game;
-
 
 /* game */
 
@@ -86,7 +83,8 @@ char	**ft_dup_map(char **map);
 
 /* map */
 
-void	parse_map(t_game *game, char *argv[]);
+void	parse_map(t_game *game, char *arg);
+
 void	check_wall(t_game *game);
 void	check_elem(t_game *game);
 
@@ -96,17 +94,14 @@ void	drawn_map(t_game *game);
 void	init_img(t_game *game);
 void	set_img(t_game *game, char c);
 
-
 /* utils */
 
 int		keycode(int key, t_game *game);
 int		count_line(char *argc);
-void	set_map(t_game *game);
+void	set_map(t_game *game, char *arg);
 void	check_ext(char *file, int argc);
 void	set_hero(t_game *game, int x, int y, char elem);
 void	verify_obj(t_game *game);
-
-
 
 /* moves */
 
@@ -114,6 +109,19 @@ int	move_a(t_game *game);
 int	move_d(t_game *game);
 int	move_w(t_game *game);
 int	move_s(t_game *game);
+
+/* ximbinha */
+
+char	**ft_dup_array(char	**array);
+void    check_path(t_game *game, int x, int y);
+void    valid_path(t_game *game);
+
+
+/* vp */
+
+//void	flood_fill(t_game *game, int x, int y);
+//int		valid_path(t_game *game, int x, int y);
+//void	new_checkah(t_game *game);
 
 
 #endif

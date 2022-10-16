@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 20:17:15 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/03 16:16:40 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:12:36 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	set_game(t_game *game)
 	game->hero.collect = 0;
 	game->hero.total = 0;
 	game->saida = 0;
+	game->val_ext = 0;
+	game->val_gems = 0;
 }
 
 void	check_ext(char *file, int argc)

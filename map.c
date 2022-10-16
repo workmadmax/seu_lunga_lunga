@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:34:13 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/03 16:15:58 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:11:38 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	parse_map(t_game *game, char *arg)
 	}
 	close(fd);
 	set_map(game, arg);
+	game->tmp_map = ft_dup_array(game->map);
 }
 
 void	check_wall(t_game *game)
@@ -69,7 +70,6 @@ void	check_elem(t_game *game)
 	t_loc		pos;
 
 	pos.y = 0;
-
 	game->gems = 0;
 	while (game->map[pos.y])
 	{
