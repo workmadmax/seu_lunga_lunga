@@ -14,7 +14,7 @@ NAME = so_long
 CC = gcc
 
 OBJS = $(SRCS:.c=.o)
-SRCS = exit_game.c game.c img.c map.c moves.c utils.c ximbinha.c
+SRCS = exit_game.c game.c img.c map.c moves.c utils.c valid_path.c
 
 MFLAGS = ./ft/libft.a ./mlx/libmlx_Linux.a
 AFLAGS = -Wall -Wextra -Werror

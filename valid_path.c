@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ximbinha.c                                         :+:      :+:    :+:   */
+/*   valid_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:29:09 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/16 19:11:54 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:08:07 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    check_path(t_game *game, int x, int y)
+void	flood_fill(t_game *game, char **map, int x, int y)
 {
-    char    *p;
-
-    p = &game->tmp_map[x][y];
-    if (*p == 'E')
-        game->val_ext++;
-    if (*p != 'E' && *p != '1')
-    {
-        if (*p == 'C')
-            game->val_gems++;
-        *p = 'x';
-        if (game->tmp_map[x][y + 1] != '1' && game->tmp_map[x][y + 1] != 'x')
-            check_path(game, x, y + 1);
-        if (game->tmp_map[x][y - 1] != '1' && game->tmp_map[x][y - 1] != 'x')
-            check_path(game, x, y - 1);
-        if (game->tmp_map[x + 1][y] != '1' && game->tmp_map[x + 1][y] != 'x')
-            check_path(game, x + 1, y);
-        if (game->tmp_map[x - 1][y] != '1' && game->tmp_map[x - 1][y] != 'x')
-            check_path(game, x - 1, y);
-    }
-	valid_path(game);
+	if (map[x][y] == '0' || map[x][y] == 'P' || map[x][y] == 'E' || map[x][y] == 'C')
+	{
+		if (map[x][y] == 'C')
+			game->val_gems++;
+		if (map[x][y] == 'E')
+			game->val_ext++;
+		map[x][y] = 'M';
+		flood_fill(game, map, x, y + 1);
+		flood_fill(game, map, x, y - 1);
+		flood_fill(game, map, x + 1, y);
+		flood_fill(game, map, x - 1, y);
+	}
 }
 
 void    valid_path(t_game *game)

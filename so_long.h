@@ -113,15 +113,11 @@ int	move_s(t_game *game);
 /* ximbinha */
 
 char	**ft_dup_array(char	**array);
-void    check_path(t_game *game, int x, int y);
+//void    check_path(t_game *game, int x, int y);
+void	flood_fill(t_game *game, char **map, int x, int y);
 void    valid_path(t_game *game);
 
 
-/* vp */
-
-//void	flood_fill(t_game *game, int x, int y);
-//int		valid_path(t_game *game, int x, int y);
-//void	new_checkah(t_game *game);
 
 
 #endif

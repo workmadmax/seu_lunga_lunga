@@ -55,9 +55,6 @@ int	main(int argc, char *argv[])
 	check_ext(argv[1], argc);
 	parse_map(&game, argv[1]);
 
-	check_path(&game, game.hero.x, game.hero.y);
-	
-
 	set_game(&game);
 	check_wall(&game);
 	check_elem(&game);

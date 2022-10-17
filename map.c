@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 22:34:13 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/16 20:11:38 by mdouglas         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "so_long.h"
 
 void	parse_map(t_game *game, char *arg)
@@ -36,7 +24,6 @@ void	parse_map(t_game *game, char *arg)
 	}
 	close(fd);
 	set_map(game, arg);
-	game->tmp_map = ft_dup_array(game->map);
 }
 
 void	check_wall(t_game *game)
@@ -88,4 +75,17 @@ void	check_elem(t_game *game)
 	}
 	if (game->hero.total != 1 || game->saida != 1 || game->gems < 1)
 		exit_error("Elements not good");
+	game->tmp_map = ft_dup_array(game->map);
+	flood_fill(game, game->tmp_map, game->hero.x, game->hero.y);
+	printf("%d\n", game->hero.x);
+	printf("%d\n", game->hero.y);
+	printf("%d\n", game->gems);
+	printf("%d\n", game->val_gems);
+	printf("%d\n", game->val_ext);
+	printf("%d\n", game->saida);
+	while (*game->tmp_map)
+	{
+		printf("%s\n", *game->tmp_map);
+		game->tmp_map++;
+	}
 }
