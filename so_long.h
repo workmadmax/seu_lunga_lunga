@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/16 20:12:19 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:17:28 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	**ft_dup_map(char **map);
 /* map */
 
 void	parse_map(t_game *game, char *arg);
-
 void	check_wall(t_game *game);
 void	check_elem(t_game *game);
 
@@ -110,11 +109,10 @@ int	move_d(t_game *game);
 int	move_w(t_game *game);
 int	move_s(t_game *game);
 
-/* ximbinha */
+/* valid path */
 
 char	**ft_dup_array(char	**array);
-//void    check_path(t_game *game, int x, int y);
-void	flood_fill(t_game *game, char **map, int x, int y);
+void	flood_fill(t_game *game, int x, int y);
 void    valid_path(t_game *game);
 
 

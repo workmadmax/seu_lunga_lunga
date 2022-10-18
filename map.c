@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/16 22:34:13 by mdouglas          #+#    #+#             */
+/*   Updated: 2022/10/18 15:16:55 by mdouglas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	parse_map(t_game *game, char *arg)
@@ -55,6 +67,7 @@ void	check_wall(t_game *game)
 void	check_elem(t_game *game)
 {
 	t_loc		pos;
+	int	i = 0;
 
 	pos.y = 0;
 	game->gems = 0;
@@ -76,16 +89,15 @@ void	check_elem(t_game *game)
 	if (game->hero.total != 1 || game->saida != 1 || game->gems < 1)
 		exit_error("Elements not good");
 	game->tmp_map = ft_dup_array(game->map);
-	flood_fill(game, game->tmp_map, game->hero.x, game->hero.y);
-	printf("%d\n", game->hero.x);
-	printf("%d\n", game->hero.y);
-	printf("%d\n", game->gems);
-	printf("%d\n", game->val_gems);
-	printf("%d\n", game->val_ext);
-	printf("%d\n", game->saida);
-	while (*game->tmp_map)
-	{
-		printf("%s\n", *game->tmp_map);
-		game->tmp_map++;
-	}
+	flood_fill(game, game->hero.x, game->hero.y);
+	valid_path(game);
+	if (game->tmp_map)
+		free(game->tmp_map);
+	//free(game->tmp_map);
+	//printf("%d\n", game->hero.x);
+	//printf("%d\n", game->hero.y);
+	//printf("%d\n", game->gems);
+	//printf("%d\n", game->val_gems);
+	//printf("%d\n", game->val_ext);
+	//printf("%d\n", game->saida);
 }

@@ -6,30 +6,40 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:29:09 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/17 16:08:07 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:14:45 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	flood_fill(t_game *game, char **map, int x, int y)
+void	flood_fill(t_game *game, int x, int y)
 {
-	if (map[x][y] == '0' || map[x][y] == 'P' || map[x][y] == 'E' || map[x][y] == 'C')
+	char	*p;
+	
+	p = &game->tmp_map[y][x];
+	if (*p == 'E')
+		game->val_ext = 1;
+	if (*p != 'E' && *p != '1')
 	{
-		if (map[x][y] == 'C')
+		if (*p == 'C')
 			game->val_gems++;
-		if (map[x][y] == 'E')
-			game->val_ext++;
-		map[x][y] = 'M';
-		flood_fill(game, map, x, y + 1);
-		flood_fill(game, map, x, y - 1);
-		flood_fill(game, map, x + 1, y);
-		flood_fill(game, map, x - 1, y);
+		*p = '.';
+		if (game->tmp_map[y][x + 1] != '1' && game->tmp_map[y][x + 1] != '.')
+			flood_fill(game, x + 1, y);
+		if (game->tmp_map[y][x - 1] != '1' && game->tmp_map[y][x - 1] != '.')
+			flood_fill(game, x - 1, y);
+		if (game->tmp_map[y + 1][x] != '1' && game->tmp_map[y + 1][x] != '.')
+			flood_fill(game, x, y + 1);
+		if (game->tmp_map[y - 1][x] != '1' && game->tmp_map[y - 1][x] != '.')
+			flood_fill(game, x, y - 1);
 	}
 }
 
 void    valid_path(t_game *game)
 {
+	int	idx;
+
+	idx = 0;
    	if (game->val_gems != game->gems || game->val_ext != game->saida)
 		exit_error("sem caminho valido");
 }
