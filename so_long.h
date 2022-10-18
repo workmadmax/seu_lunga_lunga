@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 16:41:16 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:02:12 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+
+# define FOCUS 9
 
 typedef struct s_map
 {
