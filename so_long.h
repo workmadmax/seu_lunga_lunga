@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 13:44:06 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:41:16 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "./mlx/mlx.h"
 # include "./ft/libft.h"
 # include "./ft/get_next_line.h"
+# include "./ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>

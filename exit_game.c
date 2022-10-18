@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 23:49:49 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/16 20:10:18 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:39:15 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	free_strmap(char **map)
 
 void	exit_error(char	*error_msg)
 {
-	printf("Error\n%s\n Closing Program\n", error_msg);
+	ft_printf("Error\n%s\n Closing Program\n", error_msg);
 	exit (0);
 }
 
 int	exit_game(t_game *game)
 {
-	printf("Thanks for play\n");
+	ft_printf("Thanks for play\n");
 	free_map(game);
 	mlx_destroy_image(game->mlx, game->info_map.wall);
 	mlx_destroy_image(game->mlx, game->info_map.coll);

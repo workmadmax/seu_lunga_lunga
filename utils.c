@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 20:17:15 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/16 20:12:36 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:40:25 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	check_ext(char *file, int argc)
 	char *ext;
 
 	if (argc < 2)
-		printf("Error nos argumentos passados\n");
+		ft_printf("Error nos argumentos passados\n");
 	ext = ft_strrchr(file, '.');
 	if (!ext || ft_strncmp(ext, ".ber", 4) != 0)
-		printf("Mapa precisa ser .ber\n");
+		ft_printf("Mapa precisa ser .ber\n");
 }
 
 void	set_hero(t_game *game, int x, int y, char elem)
