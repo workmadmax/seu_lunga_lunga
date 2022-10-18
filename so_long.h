@@ -6,14 +6,14 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 15:17:28 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:44:06 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+# include "./mlx/mlx.h"
 # include "./ft/libft.h"
 # include "./ft/get_next_line.h"
 # include <stdlib.h>

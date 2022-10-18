@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:34:13 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 15:16:55 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:11:52 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ void	check_elem(t_game *game)
 	if (game->hero.total != 1 || game->saida != 1 || game->gems < 1)
 		exit_error("Elements not good");
 	game->tmp_map = ft_dup_array(game->map);
+	if (!game->tmp_map)
+		exit_error("sem mapa temporario");
 	flood_fill(game, game->hero.x, game->hero.y);
 	valid_path(game);
-	if (game->tmp_map)
-		free(game->tmp_map);
-	//free(game->tmp_map);
+	
 	//printf("%d\n", game->hero.x);
 	//printf("%d\n", game->hero.y);
 	//printf("%d\n", game->gems);
