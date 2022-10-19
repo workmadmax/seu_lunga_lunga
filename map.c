@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:34:13 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 14:11:52 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:54:31 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	parse_map(t_game *game, char *arg)
 		exit_error("Faleid to allocte memory");
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
-		exit_error("Error map not exist!");
-	pos.y = 0;
+		exit_error("Error file map not exist!");
 	pos.x = 0;
-	while (pos.y <= line)
+	pos.y = 0;
+	while (pos.x <= line)
 	{
 		temps = get_next_line(fd);
-		game->map[pos.y++] = ft_strtrim(temps, "\n");
+		game->map[pos.x++] = ft_strtrim(temps, "\n");
 		free(temps);
 	}
 	close(fd);
@@ -42,62 +42,54 @@ void	check_wall(t_game *game)
 {
 	t_loc	pos;
 
-	pos.y = 0;
-	while (game->map[pos.y] != 0)
+	pos.x = 0;
+	while (game->map[pos.x] != 0)
 	{
-		pos.x = 0;
-		if ((int)ft_strlen(game->map[pos.y]) != game->info_map.map_len)
+		pos.y = 0;
+		if ((int)ft_strlen(game->map[pos.x]) != game->info_map.map_len)
 			exit_error("The map must rectangular!");
-		if (pos.y == 0 || pos.y == game->info_map.map_hei - 1)
+		if (pos.x == 0 || pos.x == game->info_map.map_hei - 1)
 		{
-			while (game->map[pos.y][pos.x] != '\0')
+			while (game->map[pos.x][pos.y] != '\0')
 			{
-				if (game->map[pos.y][pos.x] != '1')
+				if (game->map[pos.x][pos.y] != '1')
 					exit_error("Th map must be surrounded by walls!");
-				pos.x++;
+				pos.y++;
 			}
 		}
-		if (game->map[pos.y][0] != '1' ||
-			game->map[pos.y][game->info_map.map_len - 1] != '1')
+		if (game->map[pos.x][0] != '1' ||
+			game->map[pos.x][game->info_map.map_len - 1] != '1')
 			exit_error("The map must be surrounded by walls2!");
-		pos.y++;
+		pos.x++;
 	}
 }
 
 void	check_elem(t_game *game)
 {
 	t_loc		pos;
-	int	i = 0;
-
-	pos.y = 0;
+	
+	pos.x = 0;
 	game->gems = 0;
-	while (game->map[pos.y])
+	while (game->map[pos.x])
 	{
-		pos.x = 0;
-		while (game->map[pos.y][pos.x])
+		pos.y = 0;
+		while (game->map[pos.x][pos.y])
 		{
-			if (game->map[pos.y][pos.x] == 'P')
-				set_hero(game, pos.x, pos.y, 'P');
-			else if (game->map[pos.y][pos.x] == 'C')
+			if (game->map[pos.x][pos.y] == 'P')
+				set_hero(game, pos.y, pos.x, 'P');
+			else if (game->map[pos.x][pos.y] == 'C')
 				game->gems++;
-			else if (game->map[pos.y][pos.x] == 'E')
-				game->saida++;
-			pos.x++;
+			else if (game->map[pos.x][pos.y] == 'E')
+				game->exit++;
+			pos.y++;
 		}
-		pos.y++;
+		pos.x++;
 	}
-	if (game->hero.total != 1 || game->saida != 1 || game->gems < 1)
+	if (game->hero.total != 1 || game->exit != 1 || game->gems < 1)
 		exit_error("Elements not good");
 	game->tmp_map = ft_dup_array(game->map);
 	if (!game->tmp_map)
 		exit_error("sem mapa temporario");
 	flood_fill(game, game->hero.x, game->hero.y);
 	valid_path(game);
-	
-	//printf("%d\n", game->hero.x);
-	//printf("%d\n", game->hero.y);
-	//printf("%d\n", game->gems);
-	//printf("%d\n", game->val_gems);
-	//printf("%d\n", game->val_ext);
-	//printf("%d\n", game->saida);
 }

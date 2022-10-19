@@ -6,7 +6,7 @@
 #    By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 20:23:22 by mdouglas          #+#    #+#              #
-#    Updated: 2022/10/18 16:54:09 by mdouglas         ###   ########.fr        #
+#    Updated: 2022/10/19 14:05:10 by mdouglas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,4 +45,10 @@ clean:
 
 re: fclean all
 
-.PHONY : all fclean clean re
+run:
+	./so_long map.ber
+
+val:
+	valgrind -s ./so_long map.ber
+
+.PHONY : all fclean clean re run

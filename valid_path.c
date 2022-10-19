@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:29:09 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 14:12:20 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:45:18 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void    valid_path(t_game *game)
 		idx++;
 	}
 	free(game->tmp_map);
-   	if (game->val_gems != game->gems || game->val_ext != game->saida)
+   	if (game->val_gems != game->gems || game->val_ext != game->exit)
 		exit_error("sem caminho valido");
 }
 
@@ -75,4 +75,14 @@ char	**ft_dup_array(char **array)
 	while (len--)
 		cpy[len] = ft_strdup(array[len]);
 	return (cpy);
+}
+
+void	set_hero(t_game *game, int x, int y, char elem)
+{
+	if (elem == 'P')
+	{
+		game->hero.total += 1;
+		game->hero.x = x;
+		game->hero.y = y;
+	}
 }

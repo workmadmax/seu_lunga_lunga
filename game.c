@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:32:49 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/16 20:10:54 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:59:10 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_mlx(t_game *game)
 	int	wid;
 	int	hei;
 
-	wid = (game->info_map.map_len) * 30;
-	hei = (game->info_map.map_hei - 1) * 30;
+	wid = (game->info_map.map_len) * 64;
+	hei = (game->info_map.map_hei - 1) * 64;
 	
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, wid, hei, "so_lunga");

@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 17:02:12 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:45:46 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,9 @@ typedef struct s_game
 {
 	int		img_wid;
 	int		img_hei;
-	int		bpp;
-	int		lenght;
 	int		gems;
 	int		steps;
-	int		saida;
-	int		endian;
+	int		exit;
 	int		val_gems;
 	int		val_ext;
 	char	*map_str;

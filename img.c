@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 19:30:36 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/16 20:11:20 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:58:19 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	drawn_map(t_game *game)
 		{
 			set_img(game, game->map[pos.y][pos.x]);
 			mlx_put_image_to_window(game->mlx, game->win, game->img_ptr,
-				pos.x * 30, pos.y * 30);
+				pos.x * 64, pos.y * 64);
 			pos.x++;
 		}
 		pos.y++;
@@ -53,14 +53,24 @@ void	init_img(t_game *game)
 	int	wid;
 	int	hei;
 
+	if (!game->info_map.coll)
+		exit_error("failed to load image");
 	game->info_map.coll = mlx_xpm_file_to_image(game->mlx,
-			"./img/coll.xpm", &wid, &hei);
+			"./imgs/rune.xpm", &wid, &hei);
+	if (!game->info_map.wall)
+		exit_error("failed to load image");
 	game->info_map.wall = mlx_xpm_file_to_image(game->mlx,
-			"./img/sand.xpm", &wid, &hei);
+			"./imgs/wall.xpm", &wid, &hei);
+	if (!game->info_map.hero)
+		exit_error("failed to load image");
 	game->info_map.hero = mlx_xpm_file_to_image(game->mlx,
-			"./img/play1.xpm", &wid, &hei);
+			"./imgs/chara.xpm", &wid, &hei);
+	if (!game->info_map.grass)
+		exit_error("failed to load image");
 	game->info_map.grass = mlx_xpm_file_to_image(game->mlx,
-			"./img/grass.xpm", &wid, &hei);
+			"./imgs/land.xpm", &wid, &hei);
+	if (!game->info_map.door)
+		exit_error("failed to load image");
 	game->info_map.door = mlx_xpm_file_to_image(game->mlx,
-			"./img/exit.xpm", &wid, &hei);
+			"./imgs/chest.xpm", &wid, &hei);
 }

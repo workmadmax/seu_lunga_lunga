@@ -1,6 +1,0 @@
-gcc -g3 game.c img.c map.c moves.c utils.c libft.a -lX11 -lXext -lmlx
-
-gcc -g3 -Wall -Werror -Wextra game.c exit_game.c img.c map.c moves.c utils.c libft.a -lX11 -lXext -lmlx
-
-gcc -g3 --check-leak=Full -Wall -Werror -Wextra game.c exit_game.c img.c map.c moves.c utils.c libft.a -lX11 -lXext -lmlx
-

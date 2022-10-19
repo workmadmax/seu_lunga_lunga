@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 20:17:15 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/18 16:40:25 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:57:00 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	set_map(t_game *game, char *arg)
 {
 	game->info_map.map_len = ft_strlen(game->map[0]);
 	game->info_map.map_hei = count_line(arg);
-	game->info_map.wall = "./imgs/sand.xpm";
-	game->info_map.coll = "./imgs/coll.xpm";
-	game->info_map.hero = "./imgs/play1.xpm";
-	game->info_map.door = "./imgs/door.xpm";
-	game->info_map.grass = "./imgs/grass.xpm";
+	game->info_map.wall = "./imgs/wall.xpm";
+	game->info_map.coll = "./imgs/rune.xpm";
+	game->info_map.hero = "./imgs/chara.xpm";
+	game->info_map.door = "./imgs/chest.xpm";
+	game->info_map.grass = "./imgs/land.xpm";
 }
 
 void	set_game(t_game *game)
@@ -61,7 +61,7 @@ void	set_game(t_game *game)
 	game->gems = 0;
 	game->hero.collect = 0;
 	game->hero.total = 0;
-	game->saida = 0;
+	game->exit = 0;
 	game->val_ext = 0;
 	game->val_gems = 0;
 }
@@ -77,12 +77,3 @@ void	check_ext(char *file, int argc)
 		ft_printf("Mapa precisa ser .ber\n");
 }
 
-void	set_hero(t_game *game, int x, int y, char elem)
-{
-	if (elem == 'P')
-	{
-		game->hero.total += 1;
-		game->hero.x = x;
-		game->hero.y = y;
-	}
-}
