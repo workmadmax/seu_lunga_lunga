@@ -6,7 +6,7 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:32:47 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/19 13:45:46 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/20 09:22:12 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	check_elem(t_game *game);
 
 /* img */
 
-void	drawn_map(t_game *game);
+int		drawn_map(t_game *game);
 void	init_img(t_game *game);
 void	set_img(t_game *game, char c);
 

@@ -6,13 +6,13 @@
 /*   By: mdouglas <mdouglas@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 19:30:36 by mdouglas          #+#    #+#             */
-/*   Updated: 2022/10/19 13:58:19 by mdouglas         ###   ########.fr       */
+/*   Updated: 2022/10/20 09:14:52 by mdouglas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	drawn_map(t_game *game)
+int	drawn_map(t_game *game)
 {
 	t_loc	pos;
 
@@ -29,6 +29,7 @@ void	drawn_map(t_game *game)
 		}
 		pos.y++;
 	}
+	return (0);
 }
 
 void	set_img(t_game *game, char c)
